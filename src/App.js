@@ -34,22 +34,28 @@ class App extends React.Component {
     // 그냥 const isLoading 하면 object가 되어버림. 정말 어렵군. es6 문법
     // state에서 isLoading을 가져오지 않으면 밑에서 this.state.isLoading 이라고 써야 함.
 
-    // map으로 각각의 movie를 rendering
+    // map으로 각각의 movie를 rendesring
     return (
-      <div>
-        {isLoading
-         ? "Loading..." 
-         : movies.map(movie => (
-            <Movie
-                key={movie.id}
-                id={movie.id}
-                year={movie.year}
-                title={movie.title}
-                summary={movie.summary}
-                poster={movie.medium_cover_image}
-            />
-        ))}
-        </div>
+        <section class="container">
+        {isLoading ? (
+          <div class="loader">
+            <span class="loader__text">Loading...</span>
+          </div>
+        ) : (
+          <div class="movies">
+              {movies.map(movie => (
+                <Movie
+                    key={movie.id}
+                    id={movie.id}
+                    year={movie.year}
+                    title={movie.title}
+                    summary={movie.summary}
+                    poster={movie.medium_cover_image}
+                />
+                ))}
+            </div>
+        )}
+        </section>
     );
   }
 }
